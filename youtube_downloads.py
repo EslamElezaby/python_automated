@@ -10,6 +10,7 @@
 from pytube import YouTube
 from pytube import Playlist
 import os
+import subprocess
 link = 'https://youtu.be/umDr0mPuyQc'
 
 video = YouTube(link)
@@ -42,9 +43,22 @@ video = YouTube(link)
 selected_path = "./downloaded_videos"
 
 
+# credit:
+# https://stackoverflow.com/questions/2878712/make-os-open-directory-in-python
+def startfile(filename):
+    try:
+        os.startfile(filename)
+    except:
+        try:
+            subprocess.Popen(['xdg-open', filename])
+        except:
+            # i think we are on mac
+            subprocess.Popen(['open', filename])
+
+
 def finish():
     path = os.path.realpath(selected_path)
-    os.startfile(path)
+    startfile(path)
     print('Download Done')
 
 
