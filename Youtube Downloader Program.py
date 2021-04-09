@@ -15,7 +15,7 @@ quality = input('What qulaity you want \n 1- Heigthest quality \n 2- Lowerest qu
 if IsPlayListOrVideo == '1' :
     video = YouTube(link)
 elif IsPlayListOrVideo == '2':
-    Playlist = Playlist(link)
+    playlist = Playlist(link)
 else:
     print('some error happened')
 
@@ -35,12 +35,12 @@ elif IsPlayListOrVideo =='1' and quality == '2':
      video.register_on_complete_callback(finish())
 ## if user choice PlayList and highest quality
 elif IsPlayListOrVideo == '2' and quality == '1':
-    for video in link.videos:
+    for video in playlist.videos:
         video.streams.get_highest_resolution().download(output_path=selected_path)
     video.register_on_complete_callback(finish())
 ## if user choice PlayList and highest quality
 elif IsPlayListOrVideo == '2' and quality == '2':
-    for video in link.videos:
+    for video in playlist.videos:
         video.streams.get_lowest_resolution().download(output_path=selected_path)
     video.register_on_complete_callback(finish())
 else:
